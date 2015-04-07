@@ -16,7 +16,6 @@
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
     <android:uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <android:uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <android:uses-permission android:name="android.permission.INTERNET" />
 
 

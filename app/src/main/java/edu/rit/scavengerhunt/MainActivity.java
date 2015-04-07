@@ -15,10 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.location.Location;
+import android.location.LocationListener;
 
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity  {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     static final int QR_SCAN_RESULT = 0;
     static final int NEXT_TARGET_RESULT = 1;
@@ -29,13 +31,46 @@ public class MainActivity extends ActionBarActivity {
     public double[] location_long;
     public int target_id;
     public int clue_id;
+    double userLog;
+    double userLat;
     boolean gps = false;
-    GPSTemperature gpsTemp = new GPSTemperature();
+    int counter =0;
+    GPSTemperature gpsTemp;
+    protected LocationManager locationManager;
+    private View view;
+    private final LocationListener locationListener = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            userLog = location.getLongitude();
+            userLat = location.getLatitude();
+            doGpsView(userLat,userLog);
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+    LocationManager lm;
+    Location location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        userLog = location.getLongitude();
+        userLat = location.getLatitude();
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, locationListener);
         //create location clues
         location_clues = new String[3][3];
         location_clues[0][0] = "Where is Location #1? Clue 1";
@@ -144,25 +179,41 @@ public class MainActivity extends ActionBarActivity {
         return downloadDialog.show();
     }
 
+    public void doGpsView(double lat, double log){
+        if(gps) {
+            tempGPS(lat, log);
+            counter++;
+        }
+    }
 
-
-    public void tempGPS(View v){
+    public void turnOnGPS(View v){
         gps = true; // turn on the GPS feature.
-        double userLat = location_lat[0];//input location manually for testing. -> should get actual location -> //gpsTemp.getUserLat();
-        double userLog = location_long[0];//gpsTemp.getUserLog();
+        view = v;
+    }
+    public void tempGPS(double lat,double log){
+        userLat = lat;
+        userLog = log;
+       // double userLat = gpsTemp.getUserLat();//location_lat[0];//input location manually for testing. -> should get actual location -> //gpsTemp.getUserLat();
+       // double userLog = gpsTemp.getUserLog();//location_long[0];//gpsTemp.getUserLog();
       //  int result  = gpsTemp.calculateDistance(userLat,userLog, location_lat[target_id],location_long[target_id]);
-        double result  = distFrom(userLat,userLog, location_lat[2],location_long[2]);
-        System.out.println("location_lat[target_id]:"+location_lat[2]);// for testing purposes. need to set [target_id]
-        System.out.println("location_long[target_id]:"+location_long[2]);
+        double result  = distFrom(userLat,userLog, location_lat[target_id],location_long[target_id]);
+        System.out.println("location_lat[target_id]:"+location_lat[target_id]);// for testing purposes. need to set [target_id]
+        System.out.println("location_long[target_id]:"+location_long[target_id]);
         System.out.println("result:"+result);
-        System.out.println("convert:"+convertKMtoFeet(result));
-        double distance = convertKMtoFeet(result);
-        String color = hexColors(distance);
+        System.out.println("convert:"+convertKMtoInches(result));
+      //  double distance = convertKMtoInches(result);
         //update background color
+        float[] results = new float[4];
+        location.distanceBetween(userLat,userLog,43.07996217,-77.61915561,results );
+        String color = hexColors((results[0]*3.28084));
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.parseColor(color));
 
+       TextView  text = (TextView) findViewById(R.id.other_score);
+
+            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d"+((int)(results[0]*3.28084)));
     }
+
 
     public static double distFrom(double lat1, double lng1, double lat2, double lng2) {
         double earthRadius = 6371.0;
@@ -181,14 +232,15 @@ public class MainActivity extends ActionBarActivity {
     /*
   *  Converts KM to feet
   * */
-    public int convertKMtoFeet (double km){
+    public int convertKMtoInches (double km){
         System.out.println("Conv km:"+km);
         double conv = 1000 / 0.3048;
-        return (int) Math.round((km*conv));
+        double feet = Math.round((km*conv));
+        return (int) feet;
     }
 
     /*
-    * The colors change within 510 feet, if above it will stay blue.
+    * The colors change within 510 inches, if above it will stay blue.
     * */
     public String hexColors(double distance){
         String color = "#";
@@ -207,10 +259,12 @@ public class MainActivity extends ActionBarActivity {
 
         }else{ //below 255 feet (red hue)
             blue = (int)(distance); //how much blue should blend in with red.
-            if(blue<= 0 || distance == 0){
+            if(blue<= 5 || distance == 0){
                 blue = 0;
             }else if(blue>=255){
                 blue = 255;
+            }else{
+                blue =+ 50;
             }
             red = 255;
             System.out.println("blue:"+blue);

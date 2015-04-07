@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:clickable="true"
-    android:background="#ff351fff">
+    android:background="#ff0000">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -70,7 +70,7 @@
             android:layout_toStartOf="@+id/lifelines"
             android:textSize="25dp"
             android:background="#ff76ff71"
-            android:onClick="tempGPS"
+            android:onClick="turnOnGPS"
             android:layout_toLeftOf="@+id/lifelines" />
 
         <Button
