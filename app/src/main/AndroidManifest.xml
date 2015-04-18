@@ -24,9 +24,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:name=".Login"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +34,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name" >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
         <activity
             android:name=".QRFeedback"
             android:label="@string/title_activity_qrfeedback"
@@ -42,6 +54,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.rit.scavengerhunt.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".End"
+            android:label="@string/title_activity_end" >
+        </activity>
+
     </application>
 
 </manifest>

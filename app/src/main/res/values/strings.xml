@@ -6,4 +6,5 @@
     <string name="scan_button">Scan QR</string>
     <string name="next_target_button">Next Target</string>
     <string name="title_activity_qrfeedback">Location Check</string>
+    <string name="title_activity_end">End</string>
 </resources>

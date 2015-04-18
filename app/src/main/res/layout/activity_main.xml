@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,7 +15,7 @@
         android:id="@+id/Main_Layout"
         android:clickable="true"
         android:focusable="false"
-        android:background="#ff2e29ff">
+        android:background="#000000">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,26 +23,25 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/current_target"
             android:text="Target: ??/10"
+            android:textSize="25dp"
+            android:textStyle="bold"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:background="#ff030303"
-            android:textColor="#f8f2b424"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+            android:textColor="#fffffcfe"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="The clue information goes here."
             android:id="@+id/clue_text"
-            android:background="@android:drawable/editbox_background_normal"
-            android:textColor="@android:color/black"
-            android:singleLine="false"
-            android:textStyle="italic"
-            android:textSize="22dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="39dp"
+            android:background="#fd040404"
+            android:textSize="20dp"
             android:textIsSelectable="true"
-            android:layout_below="@+id/current_target"
-            android:layout_marginTop="43dp" />
+            android:textColor="#fffbfffd"
+            android:layout_below="@+id/current_target" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,14 +49,14 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Lifelines"
             android:id="@+id/lifelines"
-            android:textStyle="bold"
             style="@android:style/TextAppearance.Large"
-            android:background="#ff0b0b0b"
-            android:textColor="#ffffa63d"
-            android:textSize="32dp"
-            android:layout_marginTop="43dp"
+            android:layout_marginTop="58dp"
             android:layout_below="@+id/clue_text"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="#ff050505"
+            android:textSize="30dp"
+            android:textColor="#fdfff9fb"
+            android:textStyle="bold" />
 
         <Button
             android:layout_width="match_parent"
@@ -140,32 +139,163 @@
             android:textColor="#dbfdfbff"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/timer" />
+            android:layout_alignTop="@+id/timer" />-->
 
-        <!--<TextView
-            android:id="@+id/feedback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:text="Feedback"
-            android:textColor="#000000"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/next_target_button" />
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.skrealworldblogspot.scavengerhunt.MainActivity"
+    android:background="#ff000101"
+    android:clickable="true"
+    android:focusable="false"
+    android:id="@+id/Main_Layout">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/current_target"
+        android:text="Target- 5/10"
+        android:background="#ff060606"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fffffcfe" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Where you will find free new paper? Near cross road."
+        android:id="@+id/clue_text"
+        android:layout_below="@+id/current_target"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:background="#fd040404"
+        android:textSize="20dp"
+        android:textIsSelectable="true"
+        android:textColor="#fffbfffd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lifelines"
+        android:id="@+id/lifelines"
+        android:layout_marginTop="58dp"
+        android:layout_below="@+id/clue_text"
+        android:layout_centerHorizontal="true"
+        android:background="#ff050505"
+        android:textSize="30dp"
+        android:textColor="#fdfff9fb"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lifelines"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:id="@+id/linearLayout">
 
         <Button
-            android:id="@+id/next_target_button"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:text="@string/next_target_button"
-            android:gravity="center"
-            android:onClick="showNextClue"
-            android:textSize="15sp"
-            android:layout_below="@+id/timer"
-            android:layout_alignRight="@+id/clue_text"
-            android:layout_alignEnd="@+id/clue_text">
-        </Button>-->
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clue+"
+            android:id="@+id/clue_plus"
+            android:background="#663300"
+            android:textColor="#ffffffff"
+            android:backgroundTintMode="src_over"
+            android:clickable="true"
+            android:elevation="@dimen/abc_action_bar_icon_vertical_padding_material"
+            style="@style/TextAppearance.AppCompat.Body1" />
 
-    </RelativeLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CTEMP"
+            android:id="@+id/ctemp"
+            android:textColor="#fffffbff"
+            android:layout_weight="0.32"
+            android:background="#FF9900" />
+
+        <Button
+            android:layout_width="119dp"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:id="@+id/skip"
+            android:background="#006600"
+            android:textColor="#fffbfdff" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scan QR Code"
+        android:id="@+id/scan_button"
+        android:textSize="12dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignLeft="@+id/lifelines"
+        android:layout_alignStart="@+id/lifelines" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/scan_button"
+        android:background="#ff070707"
+        android:text="00:04:02"
+        android:textSize="25dp"
+        android:autoText="false"
+        android:layout_toLeftOf="@+id/scan_button"
+        android:layout_toStartOf="@+id/scan_button"
+        android:format="12:43:22"
+        android:textStyle="bold"
+        android:textColor="#fff8fcfc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Other&apos;s Score-"
+        android:id="@+id/other_score"
+        android:layout_below="@+id/timer"
+        android:layout_alignRight="@+id/linearLayout"
+        android:layout_alignEnd="@+id/linearLayout"
+        android:background="#ff070707"
+        android:textColor="#fffdfffb" />
+
+
+
+    <!--<TextView
+        android:id="@+id/feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:text="Feedback"
+        android:textColor="#000000"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/next_target_button" />
+
+    <Button
+        android:id="@+id/next_target_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="@string/next_target_button"
+        android:gravity="center"
+        android:onClick="showNextClue"
+        android:textSize="15sp"
+        android:layout_below="@+id/timer"
+        android:layout_alignRight="@+id/clue_text"
+        android:layout_alignEnd="@+id/clue_text">
+    </Button>-->
+
 </RelativeLayout>
