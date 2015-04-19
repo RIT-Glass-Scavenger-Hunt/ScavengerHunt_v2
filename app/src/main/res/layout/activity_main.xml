@@ -207,6 +207,7 @@
             android:layout_height="wrap_content"
             android:text="Clue+"
             android:id="@+id/clue_plus"
+            android:onClick="showNextClue"
             android:background="#663300"
             android:textColor="#ffffffff"
             android:backgroundTintMode="src_over"
@@ -219,6 +220,7 @@
             android:layout_height="wrap_content"
             android:text="CTEMP"
             android:id="@+id/ctemp"
+            android:onClick="turnOnGPS"
             android:textColor="#fffffbff"
             android:layout_weight="0.32"
             android:background="#FF9900" />
@@ -227,6 +229,7 @@
             android:layout_width="119dp"
             android:layout_height="wrap_content"
             android:text="Skip"
+            android:onClick="skip"
             android:id="@+id/skip"
             android:background="#006600"
             android:textColor="#fffbfdff" />
@@ -237,6 +240,7 @@
         android:layout_height="wrap_content"
         android:text="Scan QR Code"
         android:id="@+id/scan_button"
+        android:onClick="scanQR"
         android:textSize="12dp"
         android:layout_below="@+id/linearLayout"
         android:layout_alignLeft="@+id/lifelines"
