@@ -199,19 +199,19 @@ public class MainActivity extends ActionBarActivity  {
         double result  = distFrom(userLat,userLog, location_lat[target_id],location_long[target_id]);
         System.out.println("location_lat[target_id]:"+location_lat[target_id]);// for testing purposes. need to set [target_id]
         System.out.println("location_long[target_id]:"+location_long[target_id]);
-        System.out.println("result:"+result);
-        System.out.println("convert:"+convertKMtoInches(result));
-      //  double distance = convertKMtoInches(result);
+      //  System.out.println("result:"+result);
+     //   System.out.println("convert:"+convertKMtoInches(result));
+        double distance = convertKMtoInches(result);
         //update background color
         float[] results = new float[4];
-        location.distanceBetween(userLat,userLog,43.07996217,-77.61915561,results );
-        String color = hexColors((results[0]*3.28084));
+        location.distanceBetween(userLat,userLog,location_lat[target_id],location_long[target_id],results );
+        String color = hexColors((int)distance);
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.parseColor(color));
 
        TextView  text = (TextView) findViewById(R.id.other_score);
 
-            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d"+((int)(results[0]*3.28084)));
+            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d"+((int)distance));
     }
 
 
@@ -234,37 +234,38 @@ public class MainActivity extends ActionBarActivity  {
   * */
     public int convertKMtoInches (double km){
         System.out.println("Conv km:"+km);
-        double conv = 1000 / 0.3048;
-        double feet = Math.round((km*conv));
+       // double conv = 1000 / 0.3048;
+        double feet = Math.round((km*3280.8));
         return (int) feet;
     }
 
     /*
     * The colors change within 510 inches, if above it will stay blue.
     * */
-    public String hexColors(double distance){
+    public String hexColors(int distance){
         String color = "#";
         int blue = 0;
         String green = "00";
         int red = 0;
         if(distance >= 255){ //higher than 255 feet (blue hue)
-            red = (int)(510-distance); //how much red should blend in with blue.
+            red = (510-distance); //how much red should blend in with blue.
             if(red<= 0){
                 red = 0;
-            }else if(red>=255){
+            }else if(distance>=255){
                 red = 255;
             }
             blue = 255;
             System.out.println("red:"+red);
 
         }else{ //below 255 feet (red hue)
-            blue = (int)(distance); //how much blue should blend in with red.
-            if(blue<= 5 || distance == 0){
+            System.out.println(distance);
+            blue = (distance); //how much blue should blend in with red.
+            if(distance<= 5 || distance == 0){
                 blue = 0;
             }else if(blue>=255){
-                blue = 255;
+              //  blue = 255;
             }else{
-                blue =+ 50;
+               // blue =+ 50;
             }
             red = 255;
             System.out.println("blue:"+blue);
