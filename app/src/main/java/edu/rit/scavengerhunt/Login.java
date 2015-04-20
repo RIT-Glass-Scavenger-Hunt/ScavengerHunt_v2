@@ -4,14 +4,41 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class Login extends ActionBarActivity {
 
+    EditText TEAM_NAME;
+    String team_name;
+
+    Button sub;
+
+    Context context = null;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        
+        context = this;
+
+        TEAM_NAME = (EditText) findViewById(R.id.editText2);
+        sub = (Button) findViewById(R.id.button);
+        
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                team_name = TEAM_NAME.getText().toString();
+                new NewTeam().execute(team_name);
+                //Call next activity here.
+            }
+        });
     }
 
 
