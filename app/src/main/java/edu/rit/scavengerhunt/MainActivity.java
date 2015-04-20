@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity  {
     public double[] location_long;
     public int target_id;
     public int clue_id;
-    double userLog;
+    double userLog ;
     double userLat;
     boolean gps = false;
     int counter =0;
@@ -68,9 +68,11 @@ public class MainActivity extends ActionBarActivity  {
         setContentView(R.layout.activity_main);
         lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        userLog = location.getLongitude();
-        userLat = location.getLatitude();
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, locationListener);
+        if (location!=null) {
+            userLog = location.getLongitude();
+            userLat = location.getLatitude();
+        }
         //create location clues
         location_clues = new String[3][3];
         location_clues[0][0] = "Where is Location #1? Clue 1";
@@ -183,12 +185,34 @@ public class MainActivity extends ActionBarActivity  {
         if(gps) {
             tempGPS(lat, log);
             counter++;
+            System.out.println("GPS is turned on.");
         }
     }
 
-    public void turnOnGPS(View v){
+    public void turnOnGPS(View v) {
         gps = true; // turn on the GPS feature.
         view = v;
+        location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location == null) {
+            alertNoGPS(MainActivity.this, "Warning Message", "Currently, your phone does not support GPS", "Ok", v).show();
+        } else {
+            doGpsView(userLat, userLog);
+        }
+    }
+
+ /* warning Dialog box
+    * */
+        private  AlertDialog alertNoGPS(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, View view) {
+            final View v = view;
+            AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
+            downloadDialog.setTitle(title);
+            downloadDialog.setMessage(message);
+            downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+
+            return downloadDialog.show();
     }
     public void tempGPS(double lat,double log){
         userLat = lat;
@@ -322,6 +346,9 @@ public class MainActivity extends ActionBarActivity  {
         }
 
     }
+
+
+
 
     /*
     *  Alert Dialog for to download the scanner.
