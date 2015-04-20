@@ -35,7 +35,7 @@ public class Login extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 team_name = TEAM_NAME.getText().toString();
-                new NewTeam().execute(team_name);
+              //  new NewTeam().execute(team_name);
                 //Call next activity here.
             }
         });*/

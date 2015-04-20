@@ -121,7 +121,8 @@ public class MainActivity extends ActionBarActivity  {
     * */
     public void showFirstClue(View v) {
         TextView clue = (TextView)v;
-        clue.setText(location_clues[target_id][0]);
+        clue_id = 0;
+        clue.setText(location_clues[target_id][clue_id]);
         View cluePlus = findViewById(R.id.clue_plus);
         cluePlus.setVisibility(View.VISIBLE);
     }
@@ -335,8 +336,8 @@ public class MainActivity extends ActionBarActivity  {
 
         if (target_id < 2) {
             target_id++;
-            clue.setText(location_clues[target_id][0]);
-
+           // clue.setText(location_clues[target_id][0]);
+            showFirstClue(clue);
             String target_string = String.valueOf(target_id + 1);
             target_label.setText("Target " + target_string + "/10:");
         }
