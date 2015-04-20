@@ -28,17 +28,27 @@ public class Login extends ActionBarActivity {
         
         context = this;
 
-        TEAM_NAME = (EditText) findViewById(R.id.editText2);
-        sub = (Button) findViewById(R.id.button);
+        TEAM_NAME = (EditText) findViewById(R.id.team_name);
+        sub = (Button) findViewById(R.id.signin_button);
         
-        sub.setOnClickListener(new View.OnClickListener() {
+        /*sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 team_name = TEAM_NAME.getText().toString();
                 new NewTeam().execute(team_name);
                 //Call next activity here.
             }
-        });
+        });*/
+    }
+
+    public void signIn(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        EditText editText = (EditText) findViewById(R.id.team_name);
+        team_name = editText.getText().toString();
+
+        new NewTeam().execute(team_name);
+
+        startActivity(intent);
     }
 
 
