@@ -88,17 +88,23 @@ public class MainActivity extends ActionBarActivity  {
         location_clues[2][2] = "Where is Location #3? Clue 3";
 
         location_QR = new String[3];
-        location_QR[0] = "Magic Lab";
+        location_QR[0] ="70-1320";
+       // location_QR[0] = "Magic Lab";
         location_QR[1] = "ATM at Crossroads"; //Approx
         location_QR[2] = "Clock at Midnight Oil";
 
         location_lat = new double[3];
-        location_lat[0] = 43.083113;
+
+
+        location_lat[0]=43.084356;
+        //  location_lat[0] = 43.083113;
         location_lat[1] = 43.082629;
         location_lat[2] = 43.0826;
 
+
         location_long = new double[3];
-        location_long[0] = -77.679786;
+        location_long[0] =-77.680944;
+      //  location_long[0] = -77.679786;
         location_long[1] = -77.679788;
         location_long[2] = -77.679678;
 
@@ -230,13 +236,14 @@ public class MainActivity extends ActionBarActivity  {
         //update background color
         float[] results = new float[4];
         location.distanceBetween(userLat,userLog,location_lat[target_id],location_long[target_id],results );
-        String color = hexColors((int)distance);
+        String color = hexColors((int)(results[0]*5));
+        System.out.println("distance to... "+results[0]*5);
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.parseColor(color));
 
        TextView  text = (TextView) findViewById(R.id.other_score);
 
-            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d"+((int)distance));
+            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d:"+(results[0]*5));
     }
 
 
@@ -285,7 +292,7 @@ public class MainActivity extends ActionBarActivity  {
         }else{ //below 255 feet (red hue)
             System.out.println(distance);
             blue = (distance); //how much blue should blend in with red.
-            if(distance<= 5 || distance == 0){
+            if(distance<= 10 || distance == 0){
                 blue = 0;
             }else if(blue>=255){
               //  blue = 255;
