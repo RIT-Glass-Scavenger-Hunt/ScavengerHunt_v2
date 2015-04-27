@@ -9,11 +9,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.location.Location;
 import android.location.LocationListener;
@@ -24,6 +27,16 @@ public class MainActivity extends ActionBarActivity  {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     static final int QR_SCAN_RESULT = 0;
     static final int NEXT_TARGET_RESULT = 1;
+
+    private TextView textTimer;
+    private Button startButton;
+    private Button pauseButton;
+    private long startTime = 0L;
+    private Handler myHandler = new Handler();
+    long timeInMillies = 0L;
+    long timeSwap = 0L;
+    long finalTime = 0L;
+
     boolean hint;
     public String[][] location_clues;
     public String[] location_QR;
@@ -111,6 +124,25 @@ public class MainActivity extends ActionBarActivity  {
         //need to start up the location counter
         target_id = 0;
         clue_id = 0;
+
+        //set timer
+        textTimer = (TextView) findViewById(R.id.textTimer);
+
+        startButton = (Button) findViewById(R.id.btnStart);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                startTime = SystemClock.uptimeMillis();
+                myHandler.postDelayed(updateTimerMethod, 0);
+            }
+        }    );
+        pauseButton = (Button) findViewById(R.id.btnPause);
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                timeSwap += timeInMillies;
+                myHandler.removeCallbacks(updateTimerMethod);
+
+            }
+        });
 
         //then add number to the target header
         TextView target_label = (TextView)findViewById(R.id.current_target);
@@ -440,6 +472,26 @@ public class MainActivity extends ActionBarActivity  {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private Runnable updateTimerMethod = new Runnable() {
+
+        public void run() {
+            timeInMillies = SystemClock.uptimeMillis() - startTime;
+            finalTime = timeSwap + timeInMillies;
+            finalTime=3600000-finalTime;
+
+            int seconds = (int) (finalTime / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+            int milliseconds = (int) (finalTime % 1000);
+            textTimer.setText("" + minutes + ":"
+                    + String.format("%02d", seconds) + ":"
+                    + String.format("%03d", milliseconds));
+            myHandler.postDelayed(this, 0);
+        }
+
+    };
+
 
 
 
