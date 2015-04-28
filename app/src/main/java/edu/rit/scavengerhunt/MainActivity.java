@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.location.Location;
 import android.location.LocationListener;
@@ -381,8 +382,8 @@ public class MainActivity extends ActionBarActivity  {
             target_label.setText("Target " + target_string + "/10:");
         }
         else {
-            target_label.setText("Done!");
-            clue.setText("No more clues!");
+            Intent intent = new Intent(this, End.class);
+            startActivity(intent);
         }
 
     }
