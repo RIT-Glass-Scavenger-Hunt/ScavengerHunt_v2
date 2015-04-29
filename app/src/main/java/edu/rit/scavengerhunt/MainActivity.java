@@ -45,6 +45,8 @@ public class MainActivity extends ActionBarActivity  {
     public double[] location_long;
     public int target_id;
     public int clue_id;
+    static int score = 0;
+    String team_name;
     double userLog ;
     double userLat;
     boolean gps = false;
@@ -180,10 +182,12 @@ public class MainActivity extends ActionBarActivity  {
               break;
          case 1:
         String message = location_clues[target_id][0]+ "\n"+ location_clues[target_id][1];
+              score = score - 2;
               clue.setText(message);
               System.out.println(message);
               break;
           case 2: clue.setText(location_clues[target_id][0]+ "\n"+ location_clues[target_id][1]+ "\n"+ location_clues[target_id][2]);
+              score = score - 2;
               break;
          default: clue.setText(location_clues[target_id][0]+ "\n"+ location_clues[target_id][1]+ "\n"+ location_clues[target_id][2] +"\n No more clues!");
              View cluePlus = findViewById(R.id.clue_plus);
@@ -209,6 +213,7 @@ public class MainActivity extends ActionBarActivity  {
         downloadDialog.setMessage(message);
         downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
+                score = score - 2;
                 View cluePlus = findViewById(R.id.skip);
                 cluePlus.setVisibility(View.GONE);
                 showNextLocation();
@@ -236,6 +241,7 @@ public class MainActivity extends ActionBarActivity  {
         if (location == null) {
             alertNoGPS(MainActivity.this, "Warning Message", "Currently, your phone does not support GPS", "Ok", v).show();
         } else {
+            score = score - 5;
             doGpsView(userLat, userLog);
         }
     }
@@ -370,6 +376,7 @@ public class MainActivity extends ActionBarActivity  {
     *  Show the next location.
     * */
     private void showNextLocation() {
+        score = score + 10;
         gps = false; // turning off the GPS temp feature until user wants to use it.
         TextView target_label = (TextView) findViewById(R.id.current_target);
         TextView clue = (TextView) findViewById(R.id.clue_text);
@@ -385,6 +392,12 @@ public class MainActivity extends ActionBarActivity  {
             Intent intent = new Intent(this, End.class);
             startActivity(intent);
         }
+        
+        Bundle bundle = getIntent().getExtras();
+        team_name = bundle.getString("team");
+
+        UpdateScore myScore = new UpdateScore();
+        myScore.execute(team_name, "" + score);
 
     }
 
