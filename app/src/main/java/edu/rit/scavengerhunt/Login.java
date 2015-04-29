@@ -48,6 +48,7 @@ public class Login extends ActionBarActivity {
 
         new NewTeam().execute(team_name);
 
+        intent.putExtra("team", team_name);
         startActivity(intent);
     }
 
