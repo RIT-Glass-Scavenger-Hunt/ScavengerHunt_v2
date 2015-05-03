@@ -43,12 +43,13 @@ public class Login extends ActionBarActivity {
 
     public void signIn(View v) {
         Intent intent = new Intent(this, MainActivity.class);
-        /*EditText editText = (EditText) findViewById(R.id.team_name);
-        team_name = editText.getText().toString();
+        //EditText editText = (EditText) findViewById(R.id.team_name);
+        //team_name = editText.getText().toString();
+        team_name = "test";
 
         new NewTeam().execute(team_name);
 
-        intent.putExtra("team", team_name);*/
+        intent.putExtra("team", team_name);
         startActivity(intent);
     }
 
