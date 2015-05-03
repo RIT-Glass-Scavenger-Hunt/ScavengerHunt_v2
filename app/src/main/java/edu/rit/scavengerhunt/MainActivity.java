@@ -30,8 +30,8 @@ public class MainActivity extends ActionBarActivity  {
     static final int NEXT_TARGET_RESULT = 1;
 
     private TextView textTimer;
-    //private Button startButton;
-    //private Button pauseButton;
+    private Button startButton;
+    private Button pauseButton;
     private long startTime = 0L;
     private Handler myHandler = new Handler();
     long timeInMillies = 0L;
@@ -90,39 +90,87 @@ public class MainActivity extends ActionBarActivity  {
             userLat = location.getLatitude();
         }
         //create location clues
-        location_clues = new String[3][3];
-        location_clues[0][0] = "Where is Location #1? Clue 1";
-        location_clues[0][1] = "Where is Location #1? Clue 2";
-        location_clues[0][2] = "Where is Location #1? Clue 3";
+        location_clues = new String[10][3];
+        location_clues[0][0] = "Where can you get a free copy of the New York Times?";
+        location_clues[0][1] = "You can also sit here next to a fireplace while looking at a giant clock.";
+        location_clues[0][2] = "You can also order coffee here.";
 
-        location_clues[1][0] = "Where is Location #2? Clue 1";
-        location_clues[1][1] = "Where is Location #2? Clue 2";
-        location_clues[1][2] = "Where is Location #2? Clue 3";
+        location_clues[1][0] = "What is known as Geek Heaven";
+        location_clues[1][1] = "It is also known as the Student Innovation Hall.";
+        location_clues[1][2] = "It is surrounded by glass and is filled with projectors.";
 
-        location_clues[2][0] = "Where is Location #3? Clue 1";
-        location_clues[2][1] = "Where is Location #3? Clue 2";
-        location_clues[2][2] = "Where is Location #3? Clue 3";
+        location_clues[2][0] = "You can get your tan here.";
+        location_clues[2][1] = "You can look professional after getting service from this place.";
+        location_clues[2][2] = "This place will remove your dead cells or doing add-ons to your dead cells.";
 
-        location_QR = new String[3];
-        //location_QR[0] ="70-1320";
-        location_QR[0] = "Magic Lab";
-        location_QR[1] = "ATM at Crossroads"; //Approx
-        location_QR[2] = "Clock at Midnight Oil";
+        location_clues[3][0] = "You can order Western Union money orders here.";
+        location_clues[3][1] = "You can buy boxes here.";
+        location_clues[3][2] = "This place always close on Sunday.";
 
-        location_lat = new double[3];
+        location_clues[4][0] = "Where can you buy hand-made gifts?";
+        location_clues[4][1] = "Where can you buy hand-made desk clock?";
+        location_clues[4][2] = "Where can you buy glass pen?";
+
+        location_clues[5][0] = "Where can you find a wall covered in different languages?";
+        location_clues[5][1] = "Where should you go if you want to enroll other campus other than Rochester, NY?";
+        location_clues[5][2] = "Where should you go to gain your international experience?";
+
+        location_clues[6][0] = "Where can you find out about research about future everyday technologies?";
+        location_clues[6][1] = "You can see this building when looking out from the Student Innovation Center.";
+        location_clues[6][2] = "The building name is also a color.";
+
+        location_clues[7][0] = "Where can you seek out the dean for the College of Applied Science and Technology?";
+        location_clues[7][1] = "The same building also includes the office for Women in Technology.";
+        location_clues[7][2] = "You’ll find the building entrance near a fountain.";
+
+        location_clues[8][0] = "You will see a white board of RIT Aero design team.";
+        location_clues[8][1] = "Where can you find a model of rocket launch vehicle?";
+        location_clues[8][2] = "Where can you find a model of formula one racecar?";
+
+        location_clues[9][0] = "What building contains the departments for computer science, information technology, and software engineering?";
+        location_clues[9][1] = "You can see the Dean’s office from here.";
+        location_clues[9][2] = "You can get a “byte” at CTRL ALT DELi.";
 
 
-        //location_lat[0]=43.084356;
-        location_lat[0] = 43.083113;
+
+        location_QR = new String[10];
+        location_QR[0] = "1"; //Midnight Oil
+        location_QR[1] = "2"; //Magic Lab
+        location_QR[2] = "3"; //Shear Global Salon
+        location_QR[3] = "4"; //Post Office
+        location_QR[4] = "5"; //Shop One
+        location_QR[5] = "6"; //Study Abroad Center
+        location_QR[6] = "7"; //Orange Hall/FET Lab
+        location_QR[7] = "8"; //Color Science
+        location_QR[8] = "9"; //Aviation Lab
+        location_QR[9] = "10"; //Entrance of Golisano Hall
+
+
+        location_lat = new double[10];
+
+
+        location_lat[0]=43.084356;
         location_lat[1] = 43.082629;
         location_lat[2] = 43.0826;
+        location_lat[3] = 43.0826;
+        location_lat[4] = 43.0826;
+        location_lat[5] = 43.0826;
+        location_lat[6] = 43.0826;
+        location_lat[7] = 43.0826;
+        location_lat[8] = 43.0826;
+        location_lat[9] = 43.0826;
 
-
-        location_long = new double[3];
-        //location_long[0] =-77.680944;
-        location_long[0] = -77.679786;
+        location_long = new double[10];
+        location_long[0] =-77.680944;
         location_long[1] = -77.679788;
         location_long[2] = -77.679678;
+        location_long[3] = -77.679678;
+        location_long[4] = -77.679678;
+        location_long[5] = -77.679678;
+        location_long[6] = -77.679678;
+        location_long[7] = -77.679678;
+        location_long[8] = -77.679678;
+        location_long[9] = -77.679678;
 
         //need to start up the location counter
         target_id = 0;
@@ -131,11 +179,7 @@ public class MainActivity extends ActionBarActivity  {
         //set timer
         textTimer = (TextView) findViewById(R.id.textTimer);
 
-        //start timer
-        startTime = SystemClock.uptimeMillis();
-        myHandler.postDelayed(updateTimerMethod, 0);
-
-        /*startButton = (Button) findViewById(R.id.btnStart);
+        startButton = (Button) findViewById(R.id.btnStart);
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startTime = SystemClock.uptimeMillis();
@@ -149,7 +193,7 @@ public class MainActivity extends ActionBarActivity  {
                 myHandler.removeCallbacks(updateTimerMethod);
 
             }
-        });*/
+        });
 
         //then add number to the target header
         TextView target_label = (TextView)findViewById(R.id.current_target);
@@ -284,9 +328,9 @@ public class MainActivity extends ActionBarActivity  {
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.parseColor(color));
 
-       /*TextView  text = (TextView) findViewById(R.id.team_score);
+      // TextView  text = (TextView) findViewById(R.id.other_score);
 
-            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d:"+(results[0]*5));*/
+           // text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d:"+(results[0]*5));
     }
 
 
@@ -384,8 +428,11 @@ public class MainActivity extends ActionBarActivity  {
         gps = false; // turning off the GPS temp feature until user wants to use it.
         TextView target_label = (TextView) findViewById(R.id.current_target);
         TextView clue = (TextView) findViewById(R.id.clue_text);
+        //reset background color
+        View main = findViewById(R.id.Main_Layout);
+        main.setBackgroundColor(Color.BLACK);
 
-        if (target_id < 2) {
+        if (target_id < 9) {
             target_id++;
            // clue.setText(location_clues[target_id][0]);
             showFirstClue(clue);
@@ -396,7 +443,7 @@ public class MainActivity extends ActionBarActivity  {
             Intent intent = new Intent(this, End.class);
             startActivity(intent);
         }
-        
+
         Bundle bundle = getIntent().getExtras();
         team_name = bundle.getString("team");
 
@@ -503,8 +550,8 @@ public class MainActivity extends ActionBarActivity  {
             seconds = seconds % 60;
             int milliseconds = (int) (finalTime % 1000);
             textTimer.setText("" + minutes + ":"
-                    + String.format("%02d", seconds));
-            //+ ":" + String.format("%03d", milliseconds));
+                    + String.format("%02d", seconds) + ":"
+                    + String.format("%03d", milliseconds));
             myHandler.postDelayed(this, 0);
         }
 
