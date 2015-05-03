@@ -149,28 +149,30 @@ public class MainActivity extends ActionBarActivity  {
         location_lat = new double[10];
 
 
-        location_lat[0]=43.084356;
-        location_lat[1] = 43.082629;
-        location_lat[2] = 43.0826;
-        location_lat[3] = 43.0826;
-        location_lat[4] = 43.0826;
-        location_lat[5] = 43.0826;
-        location_lat[6] = 43.0826;
-        location_lat[7] = 43.0826;
-        location_lat[8] = 43.0826;
-        location_lat[9] = 43.0826;
+        location_lat[0]=43.082541; //Midnight Oil
+        location_lat[1] = 43.083085; //Magic Lab
+        location_lat[2] = 43.082657;//Shear Global Salon
+        location_lat[3] = 43.082597; //Post Office
+        location_lat[4] = 43.082762; //Shop One
+        location_lat[5] = 43.083172;//Study Abroad Center
+        location_lat[6] = 43.083729 ; //Orange Hall/FET Lab
+        location_lat[7] = 43.082548; //Color Science
+        location_lat[8] = 43.084624; //Aviation Lab
+        location_lat[9] = 43.084658;  //Entrance of Golisano Hall
+
+
 
         location_long = new double[10];
-        location_long[0] =-77.680944;
-        location_long[1] = -77.679788;
-        location_long[2] = -77.679678;
-        location_long[3] = -77.679678;
-        location_long[4] = -77.679678;
-        location_long[5] = -77.679678;
-        location_long[6] = -77.679678;
-        location_long[7] = -77.679678;
-        location_long[8] = -77.679678;
-        location_long[9] = -77.679678;
+        location_long[0] =-77.679751; //Midnight Oil
+        location_long[1] = -77.679854;//Magic Lab
+        location_long[2] = -77.680929;//Shear Global Salon
+        location_long[3] = -77.680686; //Post Office
+        location_long[4] =  -77.680389; //Shop One
+        location_long[5] = -77.680978; //Study Abroad Center
+        location_long[6] = -77.678980; //Orange Hall/FET Lab
+        location_long[7] = -77.678461; //Color Science
+        location_long[8] = -77.678362; //Aviation Lab
+        location_long[9] = -77.679969;  //Entrance of Golisano Hall
 
         //need to start up the location counter
         target_id = 0;
