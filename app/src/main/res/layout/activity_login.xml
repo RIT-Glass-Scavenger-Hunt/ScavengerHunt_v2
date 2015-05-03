@@ -13,7 +13,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:text="Start!"
         android:id="@+id/signin_button"
         android:onClick="signIn"
         android:background="#fdfffbfb"
@@ -36,7 +36,7 @@
         android:layout_alignTop="@+id/signin_button"
         android:layout_alignBottom="@+id/signin_button" />
 
-    <EditText
+   <!--<EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -50,7 +50,7 @@
         android:background="#fffff8f8"
         android:textSize="30dp"
         android:layout_alignParentEnd="true"
-        android:textColor="#7d858585" />
+        android:textColor="#7d858585" />-->
 
     <!-- <EditText
          android:layout_width="fill_parent"

@@ -30,8 +30,8 @@ public class MainActivity extends ActionBarActivity  {
     static final int NEXT_TARGET_RESULT = 1;
 
     private TextView textTimer;
-    private Button startButton;
-    private Button pauseButton;
+    //private Button startButton;
+    //private Button pauseButton;
     private long startTime = 0L;
     private Handler myHandler = new Handler();
     long timeInMillies = 0L;
@@ -104,23 +104,23 @@ public class MainActivity extends ActionBarActivity  {
         location_clues[2][2] = "Where is Location #3? Clue 3";
 
         location_QR = new String[3];
-        location_QR[0] ="70-1320";
-       // location_QR[0] = "Magic Lab";
+        //location_QR[0] ="70-1320";
+        location_QR[0] = "Magic Lab";
         location_QR[1] = "ATM at Crossroads"; //Approx
         location_QR[2] = "Clock at Midnight Oil";
 
         location_lat = new double[3];
 
 
-        location_lat[0]=43.084356;
-        //  location_lat[0] = 43.083113;
+        //location_lat[0]=43.084356;
+        location_lat[0] = 43.083113;
         location_lat[1] = 43.082629;
         location_lat[2] = 43.0826;
 
 
         location_long = new double[3];
-        location_long[0] =-77.680944;
-      //  location_long[0] = -77.679786;
+        //location_long[0] =-77.680944;
+        location_long[0] = -77.679786;
         location_long[1] = -77.679788;
         location_long[2] = -77.679678;
 
@@ -131,7 +131,11 @@ public class MainActivity extends ActionBarActivity  {
         //set timer
         textTimer = (TextView) findViewById(R.id.textTimer);
 
-        startButton = (Button) findViewById(R.id.btnStart);
+        //start timer
+        startTime = SystemClock.uptimeMillis();
+        myHandler.postDelayed(updateTimerMethod, 0);
+
+        /*startButton = (Button) findViewById(R.id.btnStart);
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startTime = SystemClock.uptimeMillis();
@@ -145,7 +149,7 @@ public class MainActivity extends ActionBarActivity  {
                 myHandler.removeCallbacks(updateTimerMethod);
 
             }
-        });
+        });*/
 
         //then add number to the target header
         TextView target_label = (TextView)findViewById(R.id.current_target);
@@ -280,9 +284,9 @@ public class MainActivity extends ActionBarActivity  {
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.parseColor(color));
 
-       TextView  text = (TextView) findViewById(R.id.other_score);
+       /*TextView  text = (TextView) findViewById(R.id.team_score);
 
-            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d:"+(results[0]*5));
+            text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d:"+(results[0]*5));*/
     }
 
 
@@ -499,8 +503,8 @@ public class MainActivity extends ActionBarActivity  {
             seconds = seconds % 60;
             int milliseconds = (int) (finalTime % 1000);
             textTimer.setText("" + minutes + ":"
-                    + String.format("%02d", seconds) + ":"
-                    + String.format("%03d", milliseconds));
+                    + String.format("%02d", seconds));
+            //+ ":" + String.format("%03d", milliseconds));
             myHandler.postDelayed(this, 0);
         }
 
