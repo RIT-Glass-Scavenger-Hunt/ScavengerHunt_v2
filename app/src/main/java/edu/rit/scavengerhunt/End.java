@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class End extends ActionBarActivity {
@@ -12,6 +13,11 @@ public class End extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
+
+        Bundle extras = getIntent().getExtras();
+        int score = extras.getInt("score");
+        TextView final_score = (TextView) findViewById(R.id.final_score);
+        final_score.setText("" + score);
     }
 
 

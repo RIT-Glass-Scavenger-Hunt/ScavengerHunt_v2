@@ -148,7 +148,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.skrealworldblogspot.scavengerhunt.MainActivity"
+    tools:context="edu.rit.scavengerhunt.MainActivity"
     android:background="#ff000101"
     android:clickable="true"
     android:focusable="false"
@@ -161,9 +161,10 @@
         android:textSize="35sp"
         android:textColor="#ffffff"
         android:text="00:00"
-        android:layout_below="@+id/scan_button"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="54dp" />
 
    <!-- <Button
         android:id="@+id/btnStart"
@@ -204,7 +205,7 @@
         android:id="@+id/clue_text"
         android:layout_below="@+id/current_target"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="20dp"
         android:background="#fd040404"
         android:textSize="20dp"
         android:textIsSelectable="true"
@@ -215,13 +216,13 @@
         android:layout_height="wrap_content"
         android:text="Lifelines"
         android:id="@+id/lifelines"
-        android:layout_marginTop="58dp"
-        android:layout_below="@+id/clue_text"
-        android:layout_centerHorizontal="true"
         android:background="#ff050505"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textColor="#fdfff9fb"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/team_text"
+        android:layout_toStartOf="@+id/team_text" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -229,7 +230,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lifelines"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/linearLayout">
 
         <Button
@@ -271,10 +272,9 @@
         android:text="Scan QR Code"
         android:id="@+id/scan_button"
         android:onClick="scanQR"
-        android:textSize="12dp"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignLeft="@+id/lifelines"
-        android:layout_alignStart="@+id/lifelines" />
+        android:textSize="25dp"
+        android:layout_above="@+id/textTimer"
+        android:layout_centerHorizontal="true" />
 
    <!--<Chronometer
         android:layout_width="wrap_content"
@@ -302,7 +302,7 @@
         android:id="@+id/team_text"
         android:background="#ff070707"
         android:textColor="#fffdfffb"
-        android:layout_below="@+id/scan_button"
+        android:layout_alignTop="@+id/textTimer"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
