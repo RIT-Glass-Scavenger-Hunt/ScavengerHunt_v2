@@ -152,7 +152,8 @@
     android:background="#ff000101"
     android:clickable="true"
     android:focusable="false"
-    android:id="@+id/Main_Layout">
+    android:id="@+id/Main_Layout"
+    android:keepScreenOn="true">
 
     <TextView
         android:id="@+id/textTimer"

@@ -28,6 +28,7 @@ public class MainActivity extends ActionBarActivity  {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     static final int QR_SCAN_RESULT = 0;
     static final int NEXT_TARGET_RESULT = 1;
+    static final int GAME_TIME = 3600000;
 
     private TextView textTimer;
     //private Button startButton;
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity  {
     public int target_id;
     public int clue_id;
     static int score = 0;
+    public int target_score = 0;
     String team_name;
     double userLog ;
     double userLat;
@@ -64,6 +66,7 @@ public class MainActivity extends ActionBarActivity  {
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
+
         }
 
         @Override
@@ -84,7 +87,7 @@ public class MainActivity extends ActionBarActivity  {
         setContentView(R.layout.activity_main);
         lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, locationListener);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
         if (location!=null) {
             userLog = location.getLongitude();
             userLat = location.getLatitude();
@@ -95,7 +98,7 @@ public class MainActivity extends ActionBarActivity  {
         location_clues[0][1] = "You can also sit here next to a fireplace while looking at a giant clock.";
         location_clues[0][2] = "You can also order coffee here.";
 
-        location_clues[1][0] = "What is known as Geek Heaven";
+        location_clues[1][0] = "What is known as Geek Heaven?";
         location_clues[1][1] = "It is also known as the Student Innovation Hall.";
         location_clues[1][2] = "It is surrounded by glass and is filled with projectors.";
 
@@ -217,6 +220,7 @@ public class MainActivity extends ActionBarActivity  {
     public void showFirstClue(View v) {
         TextView clue = (TextView)v;
         clue_id = 0;
+        target_score = 10;
         clue.setText(location_clues[target_id][clue_id]);
         View cluePlus = findViewById(R.id.clue_plus);
         cluePlus.setVisibility(View.VISIBLE);
@@ -236,16 +240,18 @@ public class MainActivity extends ActionBarActivity  {
               break;
          case 1:
         String message = location_clues[target_id][0]+ "\n"+ location_clues[target_id][1];
-              score = score - 2;
+              target_score = target_score - 2;
               clue.setText(message);
-              System.out.println(message);
+              //System.out.println(message);
               break;
           case 2: clue.setText(location_clues[target_id][0]+ "\n"+ location_clues[target_id][1]+ "\n"+ location_clues[target_id][2]);
-              score = score - 2;
+              target_score = target_score - 2;
+              View cluePlus = findViewById(R.id.clue_plus);
+              cluePlus.setVisibility(View.GONE);
               break;
          default: clue.setText(location_clues[target_id][0]+ "\n"+ location_clues[target_id][1]+ "\n"+ location_clues[target_id][2] +"\n No more clues!");
-             View cluePlus = findViewById(R.id.clue_plus);
-             cluePlus.setVisibility(View.GONE);
+             View cluePlusAgain = findViewById(R.id.clue_plus);
+             cluePlusAgain.setVisibility(View.GONE);
       }
 
 
@@ -267,7 +273,7 @@ public class MainActivity extends ActionBarActivity  {
         downloadDialog.setMessage(message);
         downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
-                score = score - 2;
+                target_score = target_score - 2;
                 View cluePlus = findViewById(R.id.skip);
                 cluePlus.setVisibility(View.GONE);
                 showNextLocation();
@@ -295,7 +301,7 @@ public class MainActivity extends ActionBarActivity  {
         if (location == null) {
             alertNoGPS(MainActivity.this, "Warning Message", "Currently, your phone does not support GPS", "Ok", v).show();
         } else {
-            score = score - 5;
+            target_score = target_score - 5;
             doGpsView(userLat, userLog);
         }
     }
@@ -430,7 +436,7 @@ public class MainActivity extends ActionBarActivity  {
     *  Show the next location.
     * */
     private void showNextLocation() {
-        score = score + 10;
+        score = score + target_score;
         gps = false; // turning off the GPS temp feature until user wants to use it.
         TextView target_label = (TextView) findViewById(R.id.current_target);
         TextView clue = (TextView) findViewById(R.id.clue_text);
@@ -446,8 +452,7 @@ public class MainActivity extends ActionBarActivity  {
             target_label.setText("Target " + target_string + "/10:");
         }
         else {
-            Intent intent = new Intent(this, End.class);
-            startActivity(intent);
+            endGame();
         }
 
         Bundle bundle = getIntent().getExtras();
@@ -455,6 +460,10 @@ public class MainActivity extends ActionBarActivity  {
 
         UpdateScore myScore = new UpdateScore();
         myScore.execute(team_name, "" + score);
+
+        //update score on screen
+        TextView teamScore = (TextView) findViewById(R.id.team_score);
+        teamScore.setText("" + score);
 
     }
 
@@ -544,12 +553,23 @@ public class MainActivity extends ActionBarActivity  {
         return super.onOptionsItemSelected(item);
     }
 
+    private void endGame() {
+        Intent intent = new Intent(this, End.class);
+        intent.putExtra("score", score);
+        startActivity(intent);
+    }
+
     private Runnable updateTimerMethod = new Runnable() {
 
         public void run() {
             timeInMillies = SystemClock.uptimeMillis() - startTime;
             finalTime = timeSwap + timeInMillies;
-            finalTime=3600000-finalTime;
+            finalTime=GAME_TIME-finalTime;
+
+            if (finalTime <= 0) {
+                endGame();
+                return;
+            }
 
             int seconds = (int) (finalTime / 1000);
             int minutes = seconds / 60;
