@@ -23,7 +23,6 @@ import android.location.Location;
 import android.location.LocationListener;
 
 
-
 public class MainActivity extends ActionBarActivity  {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     static final int QR_SCAN_RESULT = 0;
@@ -151,8 +150,7 @@ public class MainActivity extends ActionBarActivity  {
 
         location_lat = new double[10];
 
-        location_lat[0] = 43.080288;
-        //location_lat[0]=43.082541; //Midnight Oil
+        location_lat[0]=43.082541; //Midnight Oil
         location_lat[1] = 43.083085; //Magic Lab
         location_lat[2] = 43.082657;//Shear Global Salon
         location_lat[3] = 43.082597; //Post Office
@@ -166,11 +164,8 @@ public class MainActivity extends ActionBarActivity  {
 
 
 
-
-
         location_long = new double[10];
-        location_long[0] = -77.618789;
-        //location_long[0] =-77.679751; //Midnight Oil
+        location_long[0] =-77.679751; //Midnight Oil
         location_long[1] = -77.679854;//Magic Lab
         location_long[2] = -77.680929;//Shear Global Salon
         location_long[3] = -77.680686; //Post Office
