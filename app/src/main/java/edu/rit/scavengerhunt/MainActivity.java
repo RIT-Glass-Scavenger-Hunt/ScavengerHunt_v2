@@ -294,15 +294,18 @@ public class MainActivity extends ActionBarActivity  {
     }
 
     public void turnOnGPS(View v) {
-        gps = true; // turn on the GPS feature.
         view = v;
         location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (location == null) {
             alertNoGPS(MainActivity.this, "Warning Message", "Currently, your phone does not support GPS", "Ok", v).show();
         } else {
-            target_score = target_score - 5;
+            if(!gps) { //take 5 points off once. 
+                target_score = target_score - 5;
+            }
             doGpsView(userLat, userLog);
         }
+        gps = true; // turn on the GPS feature.
+
     }
 
  /* warning Dialog box
