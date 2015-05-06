@@ -219,6 +219,7 @@ public class MainActivity extends ActionBarActivity  {
     public void showFirstClue(View v) {
         TextView clue = (TextView)v;
         clue_id = 0;
+        score = 0; //RESET THE SCORE if the user want to play the game again.
         target_score = 10;
         clue.setText(location_clues[target_id][clue_id]);
         View cluePlus = findViewById(R.id.clue_plus);
@@ -299,7 +300,7 @@ public class MainActivity extends ActionBarActivity  {
         if (location == null) {
             alertNoGPS(MainActivity.this, "Warning Message", "Currently, your phone does not support GPS", "Ok", v).show();
         } else {
-            if(!gps) { //take 5 points off once. 
+            if(!gps) { //take 5 points off once.
                 target_score = target_score - 5;
             }
             doGpsView(userLat, userLog);
