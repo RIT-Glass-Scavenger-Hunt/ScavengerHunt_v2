@@ -1,4 +1,4 @@
-package com.example.chip.scavengerhunt;
+package edu.rit.scavengerhunt;
 
 import android.os.AsyncTask;
 import android.util.Log;
