@@ -45,9 +45,11 @@ public class Login extends ActionBarActivity {
         Intent intent = new Intent(this, MainActivity.class);
         //EditText editText = (EditText) findViewById(R.id.team_name);
         //team_name = editText.getText().toString();
-        team_name = "test";
 
-        new NewTeam().execute(team_name);
+        NewTeam myTeam = new NewTeam();
+        team_name = myTeam.createTeam();
+
+        System.out.println("Login" + " " + team_name);
 
         intent.putExtra("team", team_name);
         startActivity(intent);
