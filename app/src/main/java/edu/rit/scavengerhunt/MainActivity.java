@@ -151,8 +151,8 @@ public class MainActivity extends ActionBarActivity  {
 
         location_lat = new double[10];
 
-
-        location_lat[0]=43.082541; //Midnight Oil
+        location_lat[0] = 43.080288;
+        //location_lat[0]=43.082541; //Midnight Oil
         location_lat[1] = 43.083085; //Magic Lab
         location_lat[2] = 43.082657;//Shear Global Salon
         location_lat[3] = 43.082597; //Post Office
@@ -165,8 +165,12 @@ public class MainActivity extends ActionBarActivity  {
 
 
 
+
+
+
         location_long = new double[10];
-        location_long[0] =-77.679751; //Midnight Oil
+        location_long[0] = -77.618789;
+        //location_long[0] =-77.679751; //Midnight Oil
         location_long[1] = -77.679854;//Magic Lab
         location_long[2] = -77.680929;//Shear Global Salon
         location_long[3] = -77.680686; //Post Office
@@ -323,15 +327,15 @@ public class MainActivity extends ActionBarActivity  {
     public void tempGPS(double lat,double log){
         userLat = lat;
         userLog = log;
-       // double userLat = gpsTemp.getUserLat();//location_lat[0];//input location manually for testing. -> should get actual location -> //gpsTemp.getUserLat();
+        //double userLat = gpsTemp.getUserLat();//location_lat[0];//input location manually for testing. -> should get actual location -> //gpsTemp.getUserLat();
        // double userLog = gpsTemp.getUserLog();//location_long[0];//gpsTemp.getUserLog();
       //  int result  = gpsTemp.calculateDistance(userLat,userLog, location_lat[target_id],location_long[target_id]);
-        double result  = distFrom(userLat,userLog, location_lat[target_id],location_long[target_id]);
+        //double result  = distFrom(userLat,userLog, location_lat[target_id],location_long[target_id]);
         System.out.println("location_lat[target_id]:"+location_lat[target_id]);// for testing purposes. need to set [target_id]
         System.out.println("location_long[target_id]:"+location_long[target_id]);
       //  System.out.println("result:"+result);
      //   System.out.println("convert:"+convertKMtoInches(result));
-        double distance = convertKMtoInches(result);
+    //    double distance = convertKMtoInches(result);
         //update background color
         float[] results = new float[4];
         location.distanceBetween(userLat,userLog,location_lat[target_id],location_long[target_id],results );
@@ -340,9 +344,9 @@ public class MainActivity extends ActionBarActivity  {
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.parseColor(color));
 
-      // TextView  text = (TextView) findViewById(R.id.other_score);
+      // TextView  text = (TextView) findViewById(R.id.team_text);
 
-           // text.setText("lat:"+userLat+" log:"+userLog+" c"+counter+ "d:"+(results[0]*5));
+     //      text.setText("d:"+(results[0]*5));
     }
 
 
@@ -382,7 +386,7 @@ public class MainActivity extends ActionBarActivity  {
             red = (510-distance); //how much red should blend in with blue.
             if(red<= 0){
                 red = 0;
-            }else if(distance>=255){
+            }else if(red>=255){
                 red = 255;
             }
             blue = 255;
@@ -393,8 +397,8 @@ public class MainActivity extends ActionBarActivity  {
             blue = (distance); //how much blue should blend in with red.
             if(distance<= 10 || distance == 0){
                 blue = 0;
-            }else if(blue>=255){
-              //  blue = 255;
+            }else if(distance>=255){
+               blue = 255;
             }else{
                // blue =+ 50;
             }
