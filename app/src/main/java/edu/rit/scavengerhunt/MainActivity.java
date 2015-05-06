@@ -150,7 +150,7 @@ public class MainActivity extends ActionBarActivity  {
 
         location_lat = new double[10];
 
-        location_lat[0]=43.082541; //Midnight Oil
+        location_lat[0]=  43.082541; //Midnight Oil
         location_lat[1] = 43.083085; //Magic Lab
         location_lat[2] = 43.082657;//Shear Global Salon
         location_lat[3] = 43.082597; //Post Office
@@ -436,6 +436,7 @@ public class MainActivity extends ActionBarActivity  {
     * */
     private void showNextLocation() {
         score = score + target_score;
+        target_score = 10;
         gps = false; // turning off the GPS temp feature until user wants to use it.
         TextView target_label = (TextView) findViewById(R.id.current_target);
         TextView clue = (TextView) findViewById(R.id.clue_text);
