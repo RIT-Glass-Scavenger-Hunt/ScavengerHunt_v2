@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity  {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     static final int QR_SCAN_RESULT = 0;
     static final int NEXT_TARGET_RESULT = 1;
-    static final int GAME_TIME = 3600000;
+    static final int GAME_TIME = 2700000;
 
     private TextView textTimer;
     //private Button startButton;
