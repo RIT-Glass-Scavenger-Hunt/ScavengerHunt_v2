@@ -343,9 +343,8 @@ public class MainActivity extends ActionBarActivity  {
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.parseColor(color));
 
-      // TextView  text = (TextView) findViewById(R.id.team_text);
-
-     //      text.setText("d:"+(results[0]*5));
+       TextView  text = (TextView) findViewById(R.id.distance);
+        text.setText("Distance away: "+(results[0]*5));
     }
 
 
@@ -448,6 +447,10 @@ public class MainActivity extends ActionBarActivity  {
         View main = findViewById(R.id.Main_Layout);
         main.setBackgroundColor(Color.BLACK);
 
+        //also remove distance value
+        TextView  text = (TextView) findViewById(R.id.distance);
+        text.setText("");
+
         if (target_id < 9) {
             target_id++;
            // clue.setText(location_clues[target_id][0]);
@@ -462,8 +465,8 @@ public class MainActivity extends ActionBarActivity  {
         Bundle bundle = getIntent().getExtras();
         team_name = bundle.getString("team");
 
-        UpdateScore myScore = new UpdateScore();
-        myScore.execute(team_name, "" + score);
+        //UpdateScore myScore = new UpdateScore();
+        //myScore.execute(team_name, "" + score);
 
         //update score on screen
         TextView teamScore = (TextView) findViewById(R.id.team_score);

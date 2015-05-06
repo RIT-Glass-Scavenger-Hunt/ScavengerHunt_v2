@@ -60,7 +60,7 @@
         android:textSize="25dp"
         android:textColor="#fffffdfb" />
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -85,7 +85,7 @@
         android:textStyle="bold"
         android:layout_alignTop="@+id/other_score"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true" />-->
 
     <ImageView
         android:layout_width="wrap_content"

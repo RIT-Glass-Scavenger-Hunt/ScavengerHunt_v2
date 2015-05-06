@@ -162,10 +162,10 @@
         android:textSize="35sp"
         android:textColor="#ffffff"
         android:text="00:00"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/scan_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="54dp" />
+        android:layout_marginTop="10dp" />
 
    <!-- <Button
         android:id="@+id/btnStart"
@@ -274,7 +274,8 @@
         android:id="@+id/scan_button"
         android:onClick="scanQR"
         android:textSize="25dp"
-        android:layout_above="@+id/textTimer"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true" />
 
    <!--<Chronometer
@@ -319,6 +320,16 @@
         android:background="#ff070707"
         android:textColor="#fffdfffb" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/distance"
+        android:background="#ff070707"
+        android:textColor="#fffdfffb"
+        android:layout_below="@+id/team_score"
+        android:layout_centerHorizontal="true" />
 
 
     <!--<TextView
