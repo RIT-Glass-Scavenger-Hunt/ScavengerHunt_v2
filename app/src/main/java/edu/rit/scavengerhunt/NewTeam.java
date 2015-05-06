@@ -1,4 +1,4 @@
-package com.example.chip.scavengerhunt;
+package edu.rit.scavengerhunt;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,10 +22,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import javax.xml.transform.Result;
-
-/**
- * Created by ChiP on 4/8/15.
- */
 
 
 public class NewTeam {
