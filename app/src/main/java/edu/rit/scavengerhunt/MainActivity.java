@@ -219,7 +219,7 @@ public class MainActivity extends ActionBarActivity  {
     public void showFirstClue(View v) {
         TextView clue = (TextView)v;
         clue_id = 0;
-        score = 0; //RESET THE SCORE if the user want to play the game again.
+       // score = 0; //RESET THE SCORE if the user want to play the game again.
         target_score = 10;
         clue.setText(location_clues[target_id][clue_id]);
         View cluePlus = findViewById(R.id.clue_plus);
