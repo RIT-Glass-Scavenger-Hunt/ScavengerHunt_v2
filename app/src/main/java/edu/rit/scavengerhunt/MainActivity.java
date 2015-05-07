@@ -279,7 +279,7 @@ public class MainActivity extends ActionBarActivity  {
         downloadDialog.setMessage(message);
         downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
-                target_score = target_score - 2;
+                target_score = 0; //default score should be set... if skip lose points. 
                 View cluePlus = findViewById(R.id.skip);
                 cluePlus.setVisibility(View.GONE);
                 showNextLocation();
