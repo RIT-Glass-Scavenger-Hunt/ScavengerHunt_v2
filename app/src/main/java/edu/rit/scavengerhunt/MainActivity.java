@@ -55,6 +55,12 @@ public class MainActivity extends ActionBarActivity  {
     GPSTemperature gpsTemp;
     protected LocationManager locationManager;
     private View view;
+    
+    @Override
+    public void onBackPressed(){
+
+    }
+    
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             userLog = location.getLongitude();
