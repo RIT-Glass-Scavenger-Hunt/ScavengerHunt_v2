@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity  {
     public double[] location_long;
     public int target_id;
     public int clue_id;
-    static int score = 0;
+    static int score = 10;//start with 10 score.
     public int target_score = 0;
     String team_name;
     double userLog ;
@@ -98,7 +98,7 @@ public class MainActivity extends ActionBarActivity  {
             userLat = location.getLatitude();
         }
         //create location clues
-        location_clues = new String[10][3];
+        location_clues = new String[9][3];
         location_clues[0][0] = "Where can you get a free copy of the New York Times?";
         location_clues[0][1] = "You can also sit here next to a fireplace while looking at a giant clock.";
         location_clues[0][2] = "You can also order coffee here.";
@@ -127,21 +127,17 @@ public class MainActivity extends ActionBarActivity  {
         location_clues[6][1] = "You can see this building when looking out from the Student Innovation Center.";
         location_clues[6][2] = "The building name is also a color.";
 
-        location_clues[7][0] = "Where can you seek out the dean for the College of Applied Science and Technology?";
-        location_clues[7][1] = "The same building also includes the office for Women in Technology.";
-        location_clues[7][2] = "You’ll find the building entrance near a fountain.";
+        location_clues[7][0] = "You will see a white board of RIT Aero design team.";
+        location_clues[7][1] = "Where can you find a model of rocket launch vehicle?";
+        location_clues[7][2] = "Where can you find a model of formula one racecar?";
 
-        location_clues[8][0] = "You will see a white board of RIT Aero design team.";
-        location_clues[8][1] = "Where can you find a model of rocket launch vehicle?";
-        location_clues[8][2] = "Where can you find a model of formula one racecar?";
-
-        location_clues[9][0] = "What building contains the departments for computer science, information technology, and software engineering?";
-        location_clues[9][1] = "You can see the Dean’s office from here.";
-        location_clues[9][2] = "You can get a “byte” at CTRL ALT DELi.";
+        location_clues[8][0] = "What building contains the departments for computer science, information technology, and software engineering?";
+        location_clues[8][1] = "You can see the Dean’s office from here.";
+        location_clues[8][2] = "You can get a “byte” at CTRL ALT DELi.";
 
 
 
-        location_QR = new String[10];
+        location_QR = new String[9];
         location_QR[0] = "1"; //Midnight Oil
         location_QR[1] = "2"; //Magic Lab
         location_QR[2] = "3"; //Shear Global Salon
@@ -149,38 +145,33 @@ public class MainActivity extends ActionBarActivity  {
         location_QR[4] = "5"; //Shop One
         location_QR[5] = "6"; //Study Abroad Center
         location_QR[6] = "7"; //Orange Hall/FET Lab
-        location_QR[7] = "8"; //Color Science
-        location_QR[8] = "9"; //Aviation Lab
-        location_QR[9] = "10"; //Entrance of Golisano Hall
+        location_QR[7] = "9"; //Aviation Lab
+        location_QR[8] = "10"; //Entrance of Golisano Hall
 
 
-        location_lat = new double[10];
-
+        location_lat = new double[9];
         location_lat[0]=  43.082541; //Midnight Oil
-        location_lat[1] = 43.083085; //Magic Lab
-        location_lat[2] = 43.082657;//Shear Global Salon
-        location_lat[3] = 43.082597; //Post Office
-        location_lat[4] = 43.082762; //Shop One
-        location_lat[5] = 43.083172;//Study Abroad Center
-        location_lat[6] = 43.083729 ; //Orange Hall/FET Lab
-        location_lat[7] = 43.082548; //Color Science
-        location_lat[8] = 43.084624; //Aviation Lab
-        location_lat[9] = 43.084658;  //Entrance of Golisano Hall
+        location_lat[1] = 43.083009; //Magic Lab
+        location_lat[2] = 43.082976;//Shear Global Salon
+        location_lat[3] = 43.082903; //Post Office
+        location_lat[4] = 43.083055; //Shop One
+        location_lat[5] = 43.083140;//Study Abroad Center
+        location_lat[6] =  43.083788; //Orange Hall/FET Lab
+        location_lat[7] = 43.084152; //Aviation Lab
+        location_lat[8] = 43.084909;  //Entrance of Golisano Hall
 
 
 
-
-        location_long = new double[10];
+        location_long = new double[9];
         location_long[0] =-77.679751; //Midnight Oil
-        location_long[1] = -77.679854;//Magic Lab
-        location_long[2] = -77.680929;//Shear Global Salon
-        location_long[3] = -77.680686; //Post Office
-        location_long[4] =  -77.680389; //Shop One
-        location_long[5] = -77.680978; //Study Abroad Center
-        location_long[6] = -77.678980; //Orange Hall/FET Lab
-        location_long[7] = -77.678461; //Color Science
-        location_long[8] = -77.678362; //Aviation Lab
-        location_long[9] = -77.679969;  //Entrance of Golisano Hall
+        location_long[1] = -77.680025;//Magic Lab
+        location_long[2] = -77.680866;//Shear Global Salon
+        location_long[3] = -77.680737; //Post Office
+        location_long[4] = -77.680545; //Shop One
+        location_long[5] = -77.681072; //Study Abroad Center
+        location_long[6] = -77.679025; //Orange Hall/FET Lab
+        location_long[7] = -77.678296; //Aviation Lab
+        location_long[8] = -77.680070;  //Entrance of Golisano Hall
 
         //need to start up the location counter
         target_id = 0;
@@ -211,7 +202,7 @@ public class MainActivity extends ActionBarActivity  {
 
         //then add number to the target header
         TextView target_label = (TextView)findViewById(R.id.current_target);
-        target_label.setText("Target 1/10:");
+        target_label.setText("Target 1/9:");
 
         //then show clue
         TextView clue = (TextView)findViewById(R.id.clue_text);
@@ -240,7 +231,7 @@ public class MainActivity extends ActionBarActivity  {
         TextView clue = (TextView) findViewById(R.id.clue_text);
             clue_id++;
             String target_string = String.valueOf(target_id + 1);
-           target_label.setText("Target " + target_string + "/10:");
+           target_label.setText("Target " + target_string + "/9:");
      switch(clue_id){
           case 0: clue.setText("-"+ location_clues[target_id][0]);
               break;
@@ -350,7 +341,7 @@ public class MainActivity extends ActionBarActivity  {
         main.setBackgroundColor(Color.parseColor(color));
 
        TextView  text = (TextView) findViewById(R.id.distance);
-        text.setText("Distance away: "+(Math.round(results[0]*5)));
+        text.setText("Distance to target: "+(Math.round(results[0]*5)));
     }
 
 
@@ -457,12 +448,12 @@ public class MainActivity extends ActionBarActivity  {
         TextView  text = (TextView) findViewById(R.id.distance);
         text.setText("");
 
-        if (target_id < 9) {
+        if (target_id < 8) {
             target_id++;
            // clue.setText(location_clues[target_id][0]);
             showFirstClue(clue);
             String target_string = String.valueOf(target_id + 1);
-            target_label.setText("Target " + target_string + "/10:");
+            target_label.setText("Target " + target_string + "/9:");
         }
         else {
             endGame();
@@ -475,8 +466,8 @@ public class MainActivity extends ActionBarActivity  {
         //myScore.execute(team_name, "" + score);
 
         //update score on screen
-        TextView teamScore = (TextView) findViewById(R.id.team_score);
-        teamScore.setText("" + score);
+        TextView teamScore = (TextView) findViewById(R.id.team_text);
+        teamScore.setText("Team Score: " + score);
 
     }
 
