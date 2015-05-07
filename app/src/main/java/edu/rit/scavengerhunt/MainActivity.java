@@ -350,7 +350,7 @@ public class MainActivity extends ActionBarActivity  {
         main.setBackgroundColor(Color.parseColor(color));
 
        TextView  text = (TextView) findViewById(R.id.distance);
-        text.setText("Distance away: "+(results[0]*5));
+        text.setText("Distance away: "+(Math.round(results[0]*5)));
     }
 
 
