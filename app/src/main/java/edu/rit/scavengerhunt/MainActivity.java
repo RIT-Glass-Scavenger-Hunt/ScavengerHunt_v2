@@ -462,8 +462,8 @@ public class MainActivity extends ActionBarActivity  {
             endGame();
         }
 
-        Bundle bundle = getIntent().getExtras();
-        team_name = bundle.getString("team");
+        //Bundle bundle = getIntent().getExtras();
+        //team_name = bundle.getString("team");
 
         //UpdateScore myScore = new UpdateScore();
         //myScore.execute(team_name, "" + score);
