@@ -46,10 +46,10 @@ public class Login extends ActionBarActivity {
         //EditText editText = (EditText) findViewById(R.id.team_name);
         //team_name = editText.getText().toString();
 
-        NewTeam myTeam = new NewTeam();
-        team_name = myTeam.createTeam();
+        //NewTeam myTeam = new NewTeam();
+        //team_name = myTeam.createTeam();
 
-        intent.putExtra("team", team_name);
+        //intent.putExtra("team", team_name);
         startActivity(intent);
     }
 
