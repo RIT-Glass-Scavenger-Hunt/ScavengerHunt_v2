@@ -227,7 +227,7 @@ public class MainActivity extends ActionBarActivity  {
         clue_id = 0;
        // score = 0; //RESET THE SCORE if the user want to play the game again.
         target_score = 10;
-        clue.setText(location_clues[target_id][clue_id]);
+        clue.setText("-"+location_clues[target_id][clue_id]);
         View cluePlus = findViewById(R.id.clue_plus);
         cluePlus.setVisibility(View.VISIBLE);
     }
@@ -242,20 +242,20 @@ public class MainActivity extends ActionBarActivity  {
             String target_string = String.valueOf(target_id + 1);
            target_label.setText("Target " + target_string + "/10:");
      switch(clue_id){
-          case 0: clue.setText(location_clues[target_id][0]);
+          case 0: clue.setText("-"+ location_clues[target_id][0]);
               break;
          case 1:
-        String message = location_clues[target_id][0]+ "\n"+ location_clues[target_id][1];
+        String message = "-"+location_clues[target_id][0]+ "\n-"+ location_clues[target_id][1];
               target_score = target_score - 2;
               clue.setText(message);
               //System.out.println(message);
               break;
-          case 2: clue.setText(location_clues[target_id][0]+ "\n"+ location_clues[target_id][1]+ "\n"+ location_clues[target_id][2]);
+          case 2: clue.setText("-"+location_clues[target_id][0]+ "\n-"+ location_clues[target_id][1]+ "\n-"+ location_clues[target_id][2]);
               target_score = target_score - 2;
-              View cluePlus = findViewById(R.id.clue_plus);
-              cluePlus.setVisibility(View.GONE);
+             // View cluePlus = findViewById(R.id.clue_plus);
+            //  cluePlus.setVisibility(View.GONE);
               break;
-         default: clue.setText(location_clues[target_id][0]+ "\n"+ location_clues[target_id][1]+ "\n"+ location_clues[target_id][2] +"\n No more clues!");
+         default: clue.setText("-"+location_clues[target_id][0]+ "\n-"+ location_clues[target_id][1]+ "\n-"+ location_clues[target_id][2] +"\n-No more clues!");
              View cluePlusAgain = findViewById(R.id.clue_plus);
              cluePlusAgain.setVisibility(View.GONE);
       }
@@ -279,7 +279,7 @@ public class MainActivity extends ActionBarActivity  {
         downloadDialog.setMessage(message);
         downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
-                target_score = 0; //default score should be set... if skip lose points. 
+                target_score = 0; //default score should be set... if skip lose points.
                 View cluePlus = findViewById(R.id.skip);
                 cluePlus.setVisibility(View.GONE);
                 showNextLocation();
