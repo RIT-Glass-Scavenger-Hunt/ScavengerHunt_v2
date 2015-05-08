@@ -157,7 +157,7 @@ public class MainActivity extends ActionBarActivity  {
         location_lat[4] = 43.083055; //Shop One
         location_lat[5] = 43.083140;//Study Abroad Center
         location_lat[6] =  43.083788; //Orange Hall/FET Lab
-        location_lat[7] = 43.084152; //Aviation Lab
+        location_lat[7] = 43.084624; //Aviation Lab
         location_lat[8] = 43.084909;  //Entrance of Golisano Hall
 
 
@@ -170,7 +170,7 @@ public class MainActivity extends ActionBarActivity  {
         location_long[4] = -77.680545; //Shop One
         location_long[5] = -77.681072; //Study Abroad Center
         location_long[6] = -77.679025; //Orange Hall/FET Lab
-        location_long[7] = -77.678296; //Aviation Lab
+        location_long[7] = -77.678362; //Aviation Lab
         location_long[8] = -77.680070;  //Entrance of Golisano Hall
 
         //need to start up the location counter
