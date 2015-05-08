@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity  {
     public double[] location_long;
     public int target_id;
     public int clue_id;
-    static int score = 10;//start with 10 score.
+    static int score = 0;
     public int target_score = 0;
     String team_name;
     double userLog ;
@@ -131,7 +131,7 @@ public class MainActivity extends ActionBarActivity  {
         location_clues[7][1] = "Where can you find a model of rocket launch vehicle?";
         location_clues[7][2] = "Where can you find a model of formula one racecar?";
 
-        location_clues[8][0] = "What building contains the departments for computer science, information technology, and software engineering?";
+        location_clues[8][0] = "Where can you find computer science, information technology, and software engineering?";
         location_clues[8][1] = "You can see the Dean’s office from here.";
         location_clues[8][2] = "You can get a “byte” at CTRL ALT DELi.";
 
@@ -456,6 +456,7 @@ public class MainActivity extends ActionBarActivity  {
             target_label.setText("Target " + target_string + "/9:");
         }
         else {
+            score = score + 10; //get 10 points for completing the game
             endGame();
         }
 

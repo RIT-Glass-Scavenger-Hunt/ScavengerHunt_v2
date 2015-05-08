@@ -299,7 +299,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Team Score:"
+        android:text="Team Score: 0"
         android:id="@+id/team_text"
         android:background="#ff070707"
         android:textColor="#fffdfffb"
